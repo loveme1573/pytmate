@@ -9,18 +9,11 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        python-version: [3.6]
         os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 2.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 2.7
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
+      - uses: actions/checkout@v4      
+      - name: Use system Python
+        run: echo "Using $(python --version)"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
